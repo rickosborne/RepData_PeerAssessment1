@@ -36,7 +36,7 @@ dailyMean <- mean(daily$steps)
 dailyMedian <- median(daily$steps)
 ```
 
-```{r}
+```{r daily}
 library(ggplot2)
 with(daily, {
     ggplot(daily, aes(x=steps)) +   
@@ -77,7 +77,7 @@ busiest <- byInterval[byInterval$steps==max(byInterval$steps),]
 
 Plot it.
 
-```{r}
+```{r timeofday}
 note <- paste("busiest:", round(busiest$steps), 'at', formatInterval(busiest$interval))
 with(byInterval, {
     ggplot(byInterval, aes(x=dateFrac, y=steps)) + 
@@ -121,7 +121,7 @@ imputedMedian <- median(imputedDaily$steps)
 
 Chart.
 
-```{r}
+```{r imputed_hist}
 with(imputedDaily, {
     ggplot(imputedDaily, aes(x=steps)) +   
       geom_histogram(fill="royalblue") + 
@@ -164,7 +164,7 @@ imputedByInterval$dateFrac <- fracTime(imputedByInterval$interval)
 
 Nothing left to do but plot it out.
 
-```{r}
+```{r timeofday_dayofweek}
 with(imputedByInterval, {
     ggplot(imputedByInterval, aes(x=dateFrac, y=steps)) +
         facet_grid(weekday ~ .) +
