@@ -93,10 +93,13 @@ with(byInterval, {
 
 Missing values: `r length(is.na(allData$steps))`
 
+Strategy: Substitute missing values with the average value for that time interval across all days.
+
 Think like a database programmer and merge the original (sparse) data with the aggregated daily data.
 
 ```{r}
 withDaily <- merge(allData, byInterval, by="interval", sort=FALSE, suffixes=c(".all",".dailymean"), all.x=TRUE)
+head(withDaily, 3)
 ```
 
 This destroys the ordering, so put it back.

@@ -129,12 +129,22 @@ with(byInterval, {
 
 Missing values: 17568
 
+Strategy: Substitute missing values with the average value for that time interval across all days.
+
 Think like a database programmer and merge the original (sparse) data with the aggregated daily data.
 
 
 ```r
 withDaily <- merge(allData, byInterval, by = "interval", sort = FALSE, suffixes = c(".all", 
     ".dailymean"), all.x = TRUE)
+head(withDaily, 3)
+```
+
+```
+##   interval steps.all       date steps.dailymean dateFrac
+## 1        0        NA 2012-10-01           1.717        0
+## 2        0         0 2012-11-23           1.717        0
+## 3        0         0 2012-10-28           1.717        0
 ```
 
 
